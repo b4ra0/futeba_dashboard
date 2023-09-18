@@ -11,15 +11,17 @@ class TimeService implements CrudService<Time> {
   }
 
   @override
-  Future<Time> buscar(int id, [Map<String, dynamic>? opcoesExtras]) {
-    // TODO: implement buscar
-    throw UnimplementedError();
+  Future<Time> buscar(int id, [Map<String, dynamic>? opcoesExtras]) async {
+    final resposta = await dio.get("http://localhost:8000/times/$id");
+
+    return Time.fromJson(resposta.data);
   }
 
   @override
-  Future<Time> cadastrar(Map<String, dynamic> dados, [Map<String, dynamic>? opcoesExtras]) {
-    // TODO: implement cadastrar
-    throw UnimplementedError();
+  Future<Time> cadastrar(Map<String, dynamic> dados, [Map<String, dynamic>? opcoesExtras]) async {
+    final resposta = await dio.post("http://localhost:8000/times", data: dados);
+
+    return Time.fromJson(resposta.data);
   }
 
   @override

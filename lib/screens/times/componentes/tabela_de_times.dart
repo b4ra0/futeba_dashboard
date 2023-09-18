@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:futeba/models/time.dart';
 import 'package:futeba/service/time_service.dart';
+import 'package:go_router/go_router.dart';
 
 class TabelaDeTimes extends StatefulWidget {
   const TabelaDeTimes({super.key});
@@ -14,25 +15,26 @@ class _TabelaDeTimesState extends State<TabelaDeTimes> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: FutureBuilder(
-        future: timeService.listar(),
-        builder: (context, snapshot) {
-          switch (snapshot.connectionState) {
-            case ConnectionState.none:
-            case ConnectionState.waiting:
-            case ConnectionState.active:
+    return FutureBuilder(
+      future: timeService.listar(),
+      builder: (context, snapshot) {
+        switch (snapshot.connectionState) {
+          case ConnectionState.none:
+          case ConnectionState.waiting:
+          case ConnectionState.active:
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          case ConnectionState.done:
+            if (snapshot.hasError) {
               return const Center(
-                child: CircularProgressIndicator(),
+                child: Text('Erro ao carregar os times'),
               );
-            case ConnectionState.done:
-              if (snapshot.hasError) {
-                return const Center(
-                  child: Text('Erro ao carregar os times'),
-                );
-              }
-              List<Time>? times = snapshot.data;
-              return DataTable(
+            }
+            List<Time>? times = snapshot.data;
+            return SizedBox(
+              width: MediaQuery.of(context).size.width * 0.9,
+              child: DataTable(
                 showBottomBorder: true,
                 dataRowHeight: 100,
                 columns: const [
@@ -56,7 +58,8 @@ class _TabelaDeTimesState extends State<TabelaDeTimes> {
                         cells: [
                           DataCell(
                             IconButton(
-                              onPressed: () {},
+                              onPressed: () =>
+                                  context.push('/times/visualizar/${time.id}'),
                               icon: const Icon(Icons.search),
                             ),
                           ),
@@ -78,10 +81,10 @@ class _TabelaDeTimesState extends State<TabelaDeTimes> {
                       ),
                     )
                     .toList(),
-              );
-          }
-        },
-      ),
+              ),
+            );
+        }
+      },
     );
   }
 }
