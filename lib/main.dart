@@ -10,9 +10,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _router = iniciarRotas();
+    final router = iniciarRotas();
     return MaterialApp.router(
-      routerConfig: _router,
+      routerConfig: router,
       theme: ThemeData.dark(),
     );
   }

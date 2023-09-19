@@ -6,6 +6,8 @@ import 'package:go_router/go_router.dart';
 class FormularioTime extends StatefulWidget {
   final Time? time;
 
+  get editando => time != null;
+
   const FormularioTime({super.key, this.time});
 
   @override
@@ -48,6 +50,13 @@ class _FormularioTimeState extends State<FormularioTime> {
           ElevatedButton(
             onPressed: () {
               if(_formKey.currentState!.validate()) {
+                widget.editando ? timeService.atualizar(
+                  widget.time!,
+                  {
+                    'nome': _nomeController.text,
+                    'url_brasao': _brasaoController.text,
+                  },
+                ) :
                 timeService.cadastrar(
                   {
                     'nome': _nomeController.text,

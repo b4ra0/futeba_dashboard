@@ -5,9 +5,10 @@ import 'package:futeba/models/time.dart';
 class TimeService implements CrudService<Time> {
   final Dio dio = Dio();
   @override
-  Future<Time> atualizar(Time time, Map<String, dynamic> dados, [Map<String, dynamic>? opcoesExtras]) {
-    // TODO: implement atualizar
-    throw UnimplementedError();
+  Future<Time> atualizar(Time time, Map<String, dynamic> dados, [Map<String, dynamic>? opcoesExtras]) async {
+    final resposta = await dio.put("http://localhost:8000/times/${time.id}", data: dados);
+
+    return Time.fromJson(resposta.data);
   }
 
   @override
@@ -21,6 +22,8 @@ class TimeService implements CrudService<Time> {
   Future<Time> cadastrar(Map<String, dynamic> dados, [Map<String, dynamic>? opcoesExtras]) async {
     final resposta = await dio.post("http://localhost:8000/times", data: dados);
 
+    print(resposta.data);
+
     return Time.fromJson(resposta.data);
   }
 
@@ -32,8 +35,7 @@ class TimeService implements CrudService<Time> {
   }
 
   @override
-  Future remover(Time time, [Map<String, dynamic>? opcoesExtras]) {
-    // TODO: implement remover
-    throw UnimplementedError();
+  Future remover(Time time, [Map<String, dynamic>? opcoesExtras]) async {
+    await dio.delete('http://localhost:8000/times/${time.id}');
   }
 }
