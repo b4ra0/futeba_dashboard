@@ -19,6 +19,7 @@ class _FormularioTimeState extends State<FormularioTime> {
   final _formKey = GlobalKey<FormState>();
   late final TextEditingController _nomeController;
   late final TextEditingController _brasaoController;
+  DateTime? dataFundacao;
 
   @override
   void initState() {
@@ -47,20 +48,33 @@ class _FormularioTimeState extends State<FormularioTime> {
               labelText: 'Brasão',
             ),
           ),
+          TextButton(
+            onPressed: () async {
+              dataFundacao = await showDatePicker(
+                initialDate: dataFundacao,
+                context: context,
+                firstDate: DateTime(1850),
+                lastDate: DateTime(DateTime.now().year, 12, 31),
+              );
+            },
+            child: Text("Escoler data de fundação"),
+          ),
           ElevatedButton(
             onPressed: () {
-              if(_formKey.currentState!.validate()) {
+              if(_formKey.currentState!.validate() && dataFundacao != null) {
                 widget.editando ? timeService.atualizar(
                   widget.time!,
                   {
                     'nome': _nomeController.text,
                     'url_brasao': _brasaoController.text,
+                    'fundacao': dataFundacao,
                   },
                 ) :
                 timeService.cadastrar(
                   {
                     'nome': _nomeController.text,
                     'url_brasao': _brasaoController.text,
+                    'fundacao': dataFundacao!.toIso8601String(),
                   },
                 );
                 context.pop();

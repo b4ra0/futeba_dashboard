@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:futeba/models/time.dart';
 import 'package:futeba/service/time_service.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 
 class TabelaDeTimes extends StatefulWidget {
   const TabelaDeTimes({super.key});
@@ -27,6 +28,7 @@ class _TabelaDeTimesState extends State<TabelaDeTimes> {
             );
           case ConnectionState.done:
             if (snapshot.hasError) {
+              print(snapshot.error);
               return const Center(
                 child: Text('Erro ao carregar os times'),
               );
@@ -65,17 +67,17 @@ class _TabelaDeTimesState extends State<TabelaDeTimes> {
                           ),
                           DataCell(
                             Image.network(
-                              time.urlBrasao,
+                              time.urlBrasao??'',
                               height: 150,
                               isAntiAlias: true,
                               filterQuality: FilterQuality.high,
                             ),
                           ),
                           DataCell(
-                            Text(time.id.toString()),
+                            Text(time.nome),
                           ),
                           DataCell(
-                            Text(time.nome),
+                            Text(DateFormat('dd/MM/yyyy').format(time.fundacao)),
                           ),
                         ],
                       ),

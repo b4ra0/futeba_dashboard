@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:futeba/screens/times/lista_de_times.dart';
+import 'package:futeba/screens/times/listar_times.dart';
 import 'package:go_router/go_router.dart';
 
 class Inicio extends StatelessWidget {
@@ -18,6 +18,12 @@ class Inicio extends StatelessWidget {
                 GoRouter.of(context).push('/times');
               },
               child: const Text('Listar times'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                GoRouter.of(context).push('/campeonatos');
+              },
+              child: const Text('Listar campeonatos'),
             ),
           ],
         ),

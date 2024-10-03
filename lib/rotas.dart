@@ -1,8 +1,9 @@
+import 'package:futeba/screens/campeonatos/listar_campeonatos.dart';
 import 'package:futeba/screens/inicio.dart';
 import 'package:futeba/screens/times/cadastrar_time.dart';
 import 'package:futeba/screens/times/componentes/tabela_de_times.dart';
 import 'package:futeba/screens/times/editar_time.dart';
-import 'package:futeba/screens/times/lista_de_times.dart';
+import 'package:futeba/screens/times/listar_times.dart';
 import 'package:futeba/screens/times/visualizar_time.dart';
 import 'package:go_router/go_router.dart';
 
@@ -33,6 +34,10 @@ iniciarRotas() => GoRouter(
               ),
             ),
           ],
+        ),
+        GoRoute(
+          path: '/campeonatos',
+          builder: (context, state) => const ListarCampeonatos(),
         ),
       ],
     );

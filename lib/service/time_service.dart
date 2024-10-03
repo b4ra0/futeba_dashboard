@@ -22,8 +22,6 @@ class TimeService implements CrudService<Time> {
   Future<Time> cadastrar(Map<String, dynamic> dados, [Map<String, dynamic>? opcoesExtras]) async {
     final resposta = await dio.post("http://localhost:8000/times", data: dados);
 
-    print(resposta.data);
-
     return Time.fromJson(resposta.data);
   }
 

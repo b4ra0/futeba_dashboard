@@ -31,7 +31,7 @@ class DetalheTime extends StatelessWidget {
       ),
       body: Row(
         children: [
-          Image.network(time.urlBrasao),
+          Image.network(time.urlBrasao??''),
           Column(
             children: [
               Text(time.nome),
