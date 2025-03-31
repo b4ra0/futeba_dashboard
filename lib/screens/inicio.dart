@@ -9,25 +9,28 @@ class Inicio extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+      appBar: AppBar(
+        title: const Text('FuteData'),
+      ),
+      drawer: Drawer(
+        child: ListView(
           children: [
-            ElevatedButton(
-              onPressed: () {
+            ListTile(
+              title: const Text('Clubes'),
+              onTap: () {
                 GoRouter.of(context).push('/clubes');
               },
-              child: const Text('Listar clubes'),
             ),
-            ElevatedButton(
-              onPressed: () {
+            ListTile(
+              title: const Text('Campeonatos'),
+              onTap: () {
                 GoRouter.of(context).push('/campeonatos');
               },
-              child: const Text('Listar campeonatos'),
             ),
           ],
         ),
-      )
+      ),
+      body: Container()
     );
   }
 }
