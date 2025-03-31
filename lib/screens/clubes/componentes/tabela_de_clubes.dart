@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:futeba/models/time.dart';
-import 'package:futeba/service/time_service.dart';
+import 'package:futeba/models/clube.dart';
+import 'package:futeba/service/clube_service.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
-class TabelaDeTimes extends StatefulWidget {
-  const TabelaDeTimes({super.key});
+class TabelaDeClubes extends StatefulWidget {
+  const TabelaDeClubes({super.key});
 
   @override
-  State<TabelaDeTimes> createState() => _TabelaDeTimesState();
+  State<TabelaDeClubes> createState() => _TabelaDeClubesState();
 }
 
-class _TabelaDeTimesState extends State<TabelaDeTimes> {
-  TimeService timeService = TimeService();
+class _TabelaDeClubesState extends State<TabelaDeClubes> {
+  ClubeService clubeService = ClubeService();
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: timeService.listar(),
+      future: clubeService.listar(),
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.none:
@@ -30,10 +30,10 @@ class _TabelaDeTimesState extends State<TabelaDeTimes> {
             if (snapshot.hasError) {
               print(snapshot.error);
               return const Center(
-                child: Text('Erro ao carregar os times'),
+                child: Text('Erro ao carregar os clubes'),
               );
             }
-            List<Time>? times = snapshot.data;
+            List<Clube>? clubes = snapshot.data;
             return SizedBox(
               width: MediaQuery.of(context).size.width * 0.9,
               child: DataTable(
@@ -53,31 +53,31 @@ class _TabelaDeTimesState extends State<TabelaDeTimes> {
                     label: Text('Nome'),
                   ),
                 ],
-                rows: times!
+                rows: clubes!
                     .map(
-                      (time) => DataRow(
-                        key: ValueKey(time.id),
+                      (clube) => DataRow(
+                        key: ValueKey(clube.id),
                         cells: [
                           DataCell(
                             IconButton(
                               onPressed: () =>
-                                  context.push('/times/visualizar/${time.id}'),
+                                  context.push('/clubes/visualizar/${clube.id}'),
                               icon: const Icon(Icons.search),
                             ),
                           ),
                           DataCell(
                             Image.network(
-                              time.urlBrasao??'',
+                              clube.urlBrasao??'',
                               height: 150,
                               isAntiAlias: true,
                               filterQuality: FilterQuality.high,
                             ),
                           ),
                           DataCell(
-                            Text(time.nome),
+                            Text(clube.nome),
                           ),
                           DataCell(
-                            Text(DateFormat('dd/MM/yyyy').format(time.fundacao)),
+                            Text(DateFormat('dd/MM/yyyy').format(clube.fundacao)),
                           ),
                         ],
                       ),

@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:futeba/models/time.dart';
-import 'package:futeba/service/time_service.dart';
+import 'package:futeba/models/clube.dart';
+import 'package:futeba/service/clube_service.dart';
 import 'package:go_router/go_router.dart';
 
-class FormularioTime extends StatefulWidget {
-  final Time? time;
+class FormularioClube extends StatefulWidget {
+  final Clube? clube;
 
-  get editando => time != null;
+  get editando => clube != null;
 
-  const FormularioTime({super.key, this.time});
+  const FormularioClube({super.key, this.clube});
 
   @override
-  State<FormularioTime> createState() => _FormularioTimeState();
+  State<FormularioClube> createState() => _FormularioClubeState();
 }
 
-class _FormularioTimeState extends State<FormularioTime> {
-  final timeService = TimeService();
+class _FormularioClubeState extends State<FormularioClube> {
+  final clubeService = ClubeService();
   final _formKey = GlobalKey<FormState>();
   late final TextEditingController _nomeController;
   late final TextEditingController _brasaoController;
@@ -24,8 +24,8 @@ class _FormularioTimeState extends State<FormularioTime> {
   @override
   void initState() {
     super.initState();
-    _nomeController = TextEditingController(text: widget.time?.nome);
-    _brasaoController = TextEditingController(text: widget.time?.urlBrasao);
+    _nomeController = TextEditingController(text: widget.clube?.nome);
+    _brasaoController = TextEditingController(text: widget.clube?.urlBrasao);
   }
 
   @override
@@ -62,15 +62,15 @@ class _FormularioTimeState extends State<FormularioTime> {
           ElevatedButton(
             onPressed: () {
               if(_formKey.currentState!.validate() && dataFundacao != null) {
-                widget.editando ? timeService.atualizar(
-                  widget.time!,
+                widget.editando ? clubeService.atualizar(
+                  widget.clube!,
                   {
                     'nome': _nomeController.text,
                     'url_brasao': _brasaoController.text,
                     'fundacao': dataFundacao,
                   },
                 ) :
-                timeService.cadastrar(
+                clubeService.cadastrar(
                   {
                     'nome': _nomeController.text,
                     'url_brasao': _brasaoController.text,

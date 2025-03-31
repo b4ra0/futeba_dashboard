@@ -1,30 +1,30 @@
 import 'package:futeba/models/campeonato.dart';
-import 'package:futeba/models/time.dart';
+import 'package:futeba/models/clube.dart';
 
 class Edicao {
   final int id;
   final Campeonato campeonato;
-  final List<Time> times;
-  final Time? campeao;
+  final List<Clube> clube;
+  final Clube? campeao;
 
   Edicao(
       {required this.id,
       required this.campeonato,
-      required this.times,
+      required this.clube,
       this.campeao}
   );
 
   Edicao.fromJson(Map<String, dynamic> json)
       : id = json['id'],
         campeonato = Campeonato.fromJson(json['campeonato']),
-        times = json['times'].map<Time>((time) => Time.fromJson(time)).toList(),
+        clube = json['clubes'].map<Clube>((clube) => Clube.fromJson(clube)).toList(),
         campeao =
-            json['campeao'] != null ? Time.fromJson(json['campeao']) : null;
+            json['campeao'] != null ? Clube.fromJson(json['campeao']) : null;
 
   Map<String, dynamic> toJson() => {
         'id': id.toString(),
         'campeonato': campeonato.toJson(),
-        'times': times.map((time) => time.toJson()).toList(),
+        'clubes': clube.map((clube) => clube.toJson()).toList(),
         'campeao': campeao?.toJson()
       };
 }

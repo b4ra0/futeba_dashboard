@@ -1,12 +1,12 @@
-class Time{
+class Clube{
   final int id;
   final String nome;
   final String? urlBrasao;
   final DateTime fundacao;
 
-  Time({required this.id, required this.nome, this.urlBrasao, required this.fundacao});
+  Clube({required this.id, required this.nome, this.urlBrasao, required this.fundacao});
 
-  Time.fromJson(Map<String, dynamic> json)
+  Clube.fromJson(Map<String, dynamic> json)
     : id = json['id'],
       nome = json['nome'],
       urlBrasao = json['url_brasao'],

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:futeba/models/campeonato.dart';
-import 'package:futeba/models/time.dart';
+import 'package:futeba/models/clube.dart';
 import 'package:futeba/service/campeonato_service.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';

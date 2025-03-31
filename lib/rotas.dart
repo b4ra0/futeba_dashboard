@@ -1,10 +1,9 @@
 import 'package:futeba/screens/campeonatos/listar_campeonatos.dart';
 import 'package:futeba/screens/inicio.dart';
-import 'package:futeba/screens/times/cadastrar_time.dart';
-import 'package:futeba/screens/times/componentes/tabela_de_times.dart';
-import 'package:futeba/screens/times/editar_time.dart';
-import 'package:futeba/screens/times/listar_times.dart';
-import 'package:futeba/screens/times/visualizar_time.dart';
+import 'package:futeba/screens/clubes/cadastrar_clube.dart';
+import 'package:futeba/screens/clubes/editar_clube.dart';
+import 'package:futeba/screens/clubes/listar_clubes.dart';
+import 'package:futeba/screens/clubes/visualizar_clube.dart';
 import 'package:go_router/go_router.dart';
 
 iniciarRotas() => GoRouter(
@@ -14,22 +13,22 @@ iniciarRotas() => GoRouter(
           builder: (context, state) => Inicio(),
         ),
         GoRoute(
-          path: '/times',
-          builder: (context, state) => const ListaDeTimes(),
+          path: '/clubes',
+          builder: (context, state) => const ListaDeClubes(),
           routes: [
             GoRoute(
               path: 'visualizar/:id',
-              builder: (context, state) => VisualizarTime(
+              builder: (context, state) => VisualizarClube(
                 id: int.parse(state.pathParameters['id']!),
               ),
             ),
             GoRoute(
               path: 'cadastrar',
-              builder: (context, state) => CadastrarTime(),
+              builder: (context, state) => CadastrarClube(),
             ),
             GoRoute(
               path: 'editar/:id',
-              builder: (context, state) => EditarTime(
+              builder: (context, state) => EditarClube(
                 id: int.parse(state.pathParameters['id']!),
               ),
             ),
