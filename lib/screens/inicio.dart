@@ -15,7 +15,14 @@ class Inicio extends StatelessWidget {
       drawer: Drawer(
         child: ListView(
           children: [
-            ListTile(
+              DrawerHeader(
+                child: Image.asset(
+                  'assets/futedata.png',
+                  fit: BoxFit.scaleDown,
+                ),
+              ),
+              ListTile(
+                leading: const Icon(Icons.home),
               title: const Text('Clubes'),
               onTap: () {
                 GoRouter.of(context).push('/clubes');

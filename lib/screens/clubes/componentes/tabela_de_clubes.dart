@@ -67,14 +67,14 @@ class _TabelaDeClubesState extends State<TabelaDeClubes> {
                           ),
                           DataCell(
                             Image.network(
-                              clube.urlBrasao??'',
+                              clube.nomePopular??'',
                               height: 150,
                               isAntiAlias: true,
                               filterQuality: FilterQuality.high,
                             ),
                           ),
                           DataCell(
-                            Text(clube.nome),
+                            Text(clube.nomeCompleto),
                           ),
                           DataCell(
                             Text(DateFormat('dd/MM/yyyy').format(clube.fundacao)),

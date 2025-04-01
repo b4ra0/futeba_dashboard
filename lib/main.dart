@@ -3,10 +3,12 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:futeba/helpers/api_client.dart';
 import 'package:futeba/helpers/injector.dart';
 import 'package:futeba/rotas.dart';
+import 'package:window_manager/window_manager.dart';
 
 Future<void> main() async {
   Injector.setup();
   await dotenv.load(fileName: ".env");
+  await WindowManager.instance.maximize();
   runApp(const MyApp());
 }
 

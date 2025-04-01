@@ -12,7 +12,7 @@ class DetalheClube extends StatelessWidget {
     ClubeService clubeService = ClubeService();
     return Scaffold(
       appBar: AppBar(
-        title: Text(clube.nome),
+        title: Text(clube.nomeCompleto),
         actions: [
           IconButton(
             icon: const Icon(Icons.edit),
@@ -31,10 +31,10 @@ class DetalheClube extends StatelessWidget {
       ),
       body: Row(
         children: [
-          Image.network(clube.urlBrasao??''),
+          Image.network(clube.nomePopular??''),
           Column(
             children: [
-              Text(clube.nome),
+              Text(clube.nomeCompleto),
             ],
           ),
         ],

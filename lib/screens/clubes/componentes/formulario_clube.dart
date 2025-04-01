@@ -24,8 +24,8 @@ class _FormularioClubeState extends State<FormularioClube> {
   @override
   void initState() {
     super.initState();
-    _nomeController = TextEditingController(text: widget.clube?.nome);
-    _brasaoController = TextEditingController(text: widget.clube?.urlBrasao);
+    _nomeController = TextEditingController(text: widget.clube?.nomeCompleto);
+    _brasaoController = TextEditingController(text: widget.clube?.nomePopular);
   }
 
   @override

@@ -70,7 +70,7 @@ class _TabelaDeCampeonatosState extends State<TabelaDeCampeonatos> {
                         Text(campeonato.nome)
                       ),
                       DataCell(
-                        Text(campeonato.edicoes.first.campeao!.nome),
+                        Text(campeonato.edicoes.first.campeao!.nomeCompleto),
                       ),
                     ],
                   ),
