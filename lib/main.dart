@@ -1,5 +1,7 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:futeba/firebase_options.dart';
 import 'package:futeba/helpers/api_client.dart';
 import 'package:futeba/helpers/injector.dart';
 import 'package:futeba/rotas.dart';
@@ -9,6 +11,9 @@ Future<void> main() async {
   Injector.setup();
   await dotenv.load(fileName: ".env");
   await WindowManager.instance.maximize();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
